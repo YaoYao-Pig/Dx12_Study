@@ -9,7 +9,7 @@
 
 
 
-
+using Microsoft::WRL::ComPtr;
 
 bool BoxApp::Initialize()
 {
@@ -18,7 +18,7 @@ bool BoxApp::Initialize()
     CreateCBVDescriptorHeap();
     CreateConstantBuffers();
 
-    111
+    CreateRootSignature();
 
 
 
@@ -63,6 +63,25 @@ void BoxApp::CreateConstantBuffers() {
 
 
 }
+
+void BoxApp::CreateRootSignature()
+{
+    //¸ùÇ©Ãû±í
+    CD3DX12_ROOT_PARAMETER slotRootParameter[1];
+
+    CD3DX12_ROOT_SIGNATURE_DESC rootSigDesc(1, slotRootParameter, 0, nullptr,
+        D3D12_ROOT_SIGNATURE_FLAG_ALLOW_INPUT_ASSEMBLER_INPUT_LAYOUT);
+
+    ComPtr<ID3DBlob> serializedRootSig = nullptr;
+    ComPtr<ID3DBlob> errorBlob = nullptr;
+
+    HRESULT hr = D3D12SerializeRootSignature(&rootSigDesc, D3D_ROOT_SIGNATURE_VERSION_1, serializedRootSig.GetAddressOf(), errorBlob.GetAddressOf());
+
+
+    dx12->mDevice->CreateRootSignature(0, serializedRootSig->GetBufferPointer(), serializedRootSig->GetBufferSize(), IID_PPV_ARGS(&mRootSignature));
+
+}
+
 
 
 

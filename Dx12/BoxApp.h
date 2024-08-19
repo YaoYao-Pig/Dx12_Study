@@ -27,6 +27,8 @@ public:
 
     std::unique_ptr<UploadBuffer<ObjectConstants>> mObjectCB = nullptr;
 
+    Microsoft::WRL::ComPtr<ID3D12RootSignature> mRootSignature = nullptr;
+
 public:
     BoxApp(HINSTANCE hInstance) :Dx12(hInstance) {
         ;
@@ -43,6 +45,7 @@ public:
 private:
     void CreateCBVDescriptorHeap();
     void CreateConstantBuffers();
+    void CreateRootSignature();
 
 };
 
