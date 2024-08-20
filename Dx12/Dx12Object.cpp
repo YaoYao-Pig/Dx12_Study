@@ -226,7 +226,7 @@ void DX12Object::Draw() {
 
 void DX12Object::InitBuffer()
 {
-
+	FlushCommandQueue();
 
 	mCommandList->Reset(mCommandAllocator.Get(), nullptr);
 

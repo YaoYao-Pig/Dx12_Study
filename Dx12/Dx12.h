@@ -2,6 +2,10 @@
 #include"Dx12Object.h"
 #include"MainWindow.h"
 #include<memory>
+#pragma comment(lib, "d3d12.lib")
+#pragma comment(lib, "dxgi.lib")
+#pragma comment(lib,"d3dcompiler.lib")
+
 class Dx12 {
 public:
     HINSTANCE mHin;
@@ -17,11 +21,25 @@ public:
 
 	void Initialize();
 
-    void Run() { 
-        while (1) {
-            Update();
-            Draw();
-        }
+	int Run() {
+		MSG msg = { 0 };
+		while (msg.message != WM_QUIT)
+		{
+			// If there are Window messages then process them.
+			if (PeekMessage(&msg, 0, 0, 0, PM_REMOVE))
+			{
+				TranslateMessage(&msg);
+				DispatchMessage(&msg);
+			}
+			// Otherwise, do animation/game stuff.
+			else
+			{
+				Update();
+				Draw();
+			}
+		}
+
+		return (int)msg.wParam;
     }
 	virtual void Update(){}
     virtual void Draw();

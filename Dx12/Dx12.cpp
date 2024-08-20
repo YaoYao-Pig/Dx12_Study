@@ -15,9 +15,14 @@ void Dx12::Initialize()
 	dx12 = make_unique<DX12Object>(mHwnd);
 
 	dx12->InitDirect3D();
+
+
+
+	dx12->FlushCommandQueue();
+	ThrowIfFailed(dx12->mCommandList->Reset(dx12->mCommandAllocator.Get(), nullptr));
 }
 
 void Dx12::Draw()
 {
-	dx12->Draw();
+	//dx12->Draw();
 }

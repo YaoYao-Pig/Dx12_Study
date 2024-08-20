@@ -1,15 +1,11 @@
 #pragma once
-#pragma once
 
 #include<crtdbg.h>
 #define _CRTDBG_MAP_ALLOC
 #include <crtdbg.h>
-
 #include"d3dUtil.h"
 
-#pragma comment(lib, "d3d12.lib")
-#pragma comment(lib, "dxgi.lib")
-#pragma comment(lib,"d3dcompiler.lib")
+
 class DX12Object {
 	template <class T>
 	using WComptr = Microsoft::WRL::ComPtr<T>;
@@ -37,7 +33,10 @@ public:
 	WComptr<ID3D12DescriptorHeap> mRtvHeap;
 	WComptr<ID3D12DescriptorHeap> mDsvHeap;
 
-
+	float AspectRatio()const
+	{
+		return static_cast<float>(mClientWidth) / mClientHeight;
+	}
 public:
 
 	//**需要额外处理
@@ -85,6 +84,11 @@ public:
 
 
 	void InitBuffer();
+
+	ID3D12Resource* CurrentBackBuffer()const;
+	D3D12_CPU_DESCRIPTOR_HANDLE CurrentBackBufferView()const;
+	D3D12_CPU_DESCRIPTOR_HANDLE DepthStencilView()const;
+	void FlushCommandQueue();
 private:
 
 	bool IniteMSAA();
@@ -96,9 +100,7 @@ private:
 	bool CreatDSVHeap();
 
 	bool SetViewPort();
-	void FlushCommandQueue();
 
-	ID3D12Resource* CurrentBackBuffer()const;
-	D3D12_CPU_DESCRIPTOR_HANDLE CurrentBackBufferView()const;
-	D3D12_CPU_DESCRIPTOR_HANDLE DepthStencilView()const;
+
+
 };
