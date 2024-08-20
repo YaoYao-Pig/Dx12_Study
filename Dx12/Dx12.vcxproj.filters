@@ -13,18 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="源文件\BoxCpp">
-      <UniqueIdentifier>{135522e9-a65d-4636-b927-878fe8331a52}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="头文件\BoxH">
-      <UniqueIdentifier>{d2012de4-0153-4373-97cc-f15456207f45}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="d3dUtil.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="d3dx12.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="MathHelper.h">
@@ -36,16 +27,10 @@
     <ClInclude Include="GameTimer.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Dx12Object.h">
+    <ClInclude Include="d3dApp.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Dx12.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="MainWindow.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="BoxApp.h">
+    <ClInclude Include="d3dx12.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
@@ -59,16 +44,10 @@
     <ClCompile Include="GameTimer.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Dx12Object.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Dx12.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="MainWindow.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="BoxApp.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="d3dApp.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

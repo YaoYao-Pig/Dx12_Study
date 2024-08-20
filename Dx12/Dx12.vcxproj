@@ -140,23 +140,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="BoxApp.h" />
+    <ClInclude Include="d3dApp.h" />
     <ClInclude Include="d3dUtil.h" />
     <ClInclude Include="d3dx12.h" />
-    <ClInclude Include="Dx12.h" />
-    <ClInclude Include="Dx12Object.h" />
     <ClInclude Include="GameTimer.h" />
-    <ClInclude Include="MainWindow.h" />
     <ClInclude Include="MathHelper.h" />
     <ClInclude Include="UploadBuffer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BoxApp.cpp" />
+    <ClCompile Include="d3dApp.cpp" />
     <ClCompile Include="d3dUtil.cpp" />
-    <ClCompile Include="Dx12.cpp" />
-    <ClCompile Include="Dx12Object.cpp" />
     <ClCompile Include="GameTimer.cpp" />
-    <ClCompile Include="MainWindow.cpp" />
     <ClCompile Include="MathHelper.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
