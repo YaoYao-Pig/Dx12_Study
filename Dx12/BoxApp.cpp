@@ -15,8 +15,7 @@ using namespace DirectX::PackedVector;
 bool BoxApp::Initialize()
 {
     Dx12::Initialize();
-	XMMATRIX P = XMMatrixPerspectiveFovLH(0.25f * MathHelper::Pi, dx12->AspectRatio(), 1.0f, 1000.0f);
-	XMStoreFloat4x4(&mProj, P);
+	
 
 
 
@@ -32,11 +31,20 @@ bool BoxApp::Initialize()
 	BuildBoxGeometry();
 	BuildPSO();
 
+	// Execute the initialization commands.
+	ThrowIfFailed(dx12->mCommandList->Close());
+	ID3D12CommandList* cmdsLists[] = { dx12->mCommandList.Get() };
+	dx12->mCommandQueue->ExecuteCommandLists(_countof(cmdsLists), cmdsLists);
+
+	// Wait until initialization is complete.
+	dx12->FlushCommandQueue();
+
     return true;;
 }
 
 void BoxApp::Update() {
-
+	XMMATRIX P = XMMatrixPerspectiveFovLH(0.25f * MathHelper::Pi, dx12->AspectRatio(), 1.0f, 1000.0f);
+	XMStoreFloat4x4(&mProj, P);
 	// Convert Spherical to Cartesian coordinates.
 	float x = mRadius * sinf(mPhi) * cosf(mTheta);
 	float z = mRadius * sinf(mPhi) * sinf(mTheta);
@@ -62,8 +70,6 @@ void BoxApp::Update() {
 
 }
 void BoxApp::Draw() {
-
-
 
 	
 	// Reuse the memory associated with command recording.
