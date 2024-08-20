@@ -38,7 +38,7 @@ public:
 	WComptr<ID3D12DescriptorHeap> mDsvHeap;
 
 
-private:
+public:
 
 	//**需要额外处理
 	HWND mhMainWnd = nullptr;
