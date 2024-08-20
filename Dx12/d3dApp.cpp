@@ -451,7 +451,7 @@ bool D3DApp::InitDirect3D()
 	assert(m4xMsaaQuality > 0 && "Unexpected MSAA quality level.");
 	
 #ifdef _DEBUG
-    LogAdapters();
+    //LogAdapters();
 #endif
 
 	CreateCommandObjects();
@@ -557,55 +557,7 @@ D3D12_CPU_DESCRIPTOR_HANDLE D3DApp::DepthStencilView()const
 }
 
 
-void D3DApp::LogAdapters()
-{
-    UINT i = 0;
-    IDXGIAdapter* adapter = nullptr;
-    std::vector<IDXGIAdapter*> adapterList;
-    while(mdxgiFactory->EnumAdapters(i, &adapter) != DXGI_ERROR_NOT_FOUND)
-    {
-        DXGI_ADAPTER_DESC desc;
-        adapter->GetDesc(&desc);
 
-        std::wstring text = L"***Adapter: ";
-        text += desc.Description;
-        text += L"\n";
-
-        OutputDebugString(text.c_str());
-
-        adapterList.push_back(adapter);
-        
-        ++i;
-    }
-
-    for(size_t i = 0; i < adapterList.size(); ++i)
-    {
-        LogAdapterOutputs(adapterList[i]);
-        ReleaseCom(adapterList[i]);
-    }
-}
-
-void D3DApp::LogAdapterOutputs(IDXGIAdapter* adapter)
-{
-    UINT i = 0;
-    IDXGIOutput* output = nullptr;
-    while(adapter->EnumOutputs(i, &output) != DXGI_ERROR_NOT_FOUND)
-    {
-        DXGI_OUTPUT_DESC desc;
-        output->GetDesc(&desc);
-        
-        std::wstring text = L"***Output: ";
-        text += desc.DeviceName;
-        text += L"\n";
-        OutputDebugString(text.c_str());
-
-        LogOutputDisplayModes(output, mBackBufferFormat);
-
-        ReleaseCom(output);
-
-        ++i;
-    }
-}
 
 void D3DApp::LogOutputDisplayModes(IDXGIOutput* output, DXGI_FORMAT format)
 {
