@@ -78,8 +78,8 @@ int D3DApp::Run()
 	while(msg.message != WM_QUIT)
 	{
 
-			Update();	
-            Draw();
+			Update(mTimer);
+            Draw(mTimer);
 
     }
 
